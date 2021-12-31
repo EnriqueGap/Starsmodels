@@ -1,0 +1,13 @@
+starprof: main.o solver.o bisection.o polytropic.o tov.o
+	gcc -o starproof main.o solver.o bisection.o polytropic.o tov.o
+
+polytropic.o : ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h
+	gcc -I../libs ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h -lm
+solver.o : ../integration/solver.c ../libs/main.h ../libs/user.h
+	gcc -I../libs ../integration/solver.c ../libs/main.h ../libs/user.h -lm
+bisection.o : ../integration/bisection.c ../integration/solver.c ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h
+	gcc -I../libs ../integration/bisection.c ../integration/solver.c ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h -lm
+tov.o : ../regime/tov.c ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h
+	gcc -I../libs ../regime/tov.c ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h -lm
+main.o : main.c ../regime/tov.c ../integration/bisection.c ../integration/solver.c ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h
+	gcc -I../libs main.c ../regime/tov.c ../integration/bisection.c ../integration/solver.c ../ec_edo/polytropic.c ../libs/main.h ../libs/user.h -lm

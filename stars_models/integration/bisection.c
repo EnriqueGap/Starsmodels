@@ -14,7 +14,7 @@ while (ERR<y[P]){
 runge4(r, y, tp, g);
 //If the pressure is still positive keep the values
 if (y[P]==y[P]){
-savey(&r,y,yaux,tp);
+saveSolution(&r,y,yaux,tp);
 }
 /*If the pressure is negative back in the mesh and recover the last values of the
 array where the pressure was positive (y=yaux)*/
@@ -31,29 +31,29 @@ printf("%.12E\t%.12E\t%.12E\n", r,y[MB],y[M]);
 /* If P is positive then y has valid values and its must to be saved.
 Later in the bisection method this values will be neccesary
 */
-void savey(double *x,double y[],double yaux[],double tpaso)
+void saveSolution(double *x,double y[],double yaux[],double tpaso)
 {
 double aux=*x+tpaso;
 /*The runge kutta methods calculate the values of pressure, masses and
 time metric function, to get the right values of densities and radial
 metric function we need to calculate this with the ecuation of state */
-ecdo(aux,y,RHO);
+eos(aux,y,RHO);
 for (int i=0; i<N; i++) yaux[i]=y[i];
 *x=aux;
 }
 //We export the correct values with cgs units or geometrical and reescale the time metric function
-void printy(double x,double y[])
+void printSolution(double x,double y[])
 {
 double alfa=RES*y[ALPHA];
 fprintf(data, "%.8E\t%.8E\t%.8E\t%.8E\t%.8E\t%.8E\t%.8E\t%.8E\n", x,y[RHOB],y[M],y[P],y[RHO],y[MB],alfa,y[A]);
 }
 
-void printdeb(double x,double y[])
+void printDeb(double x,double y[])
 {
 fprintf(data, "%E\t%E\t%.16E\t%.16E\t%E\t%.16E\t%.16E\t%E\n", x,y[RHOB],y[M],y[P],y[RHO],y[MB],y[ALPHA],y[A]);
 }
 
-void printcgs(double x,double y[])
+void printCGS(double x,double y[])
 {
 double cgs[N], cgsx;
 cgsx	  = x*CONV/KM;
@@ -61,6 +61,6 @@ cgs[RHOB] = y[RHOB]*pow(CONV,-2)*pow(C,2)/G;
 cgs[M]	  = y[M]*CONV*pow(C,4)/G;
 cgs[P]	  = y[P]*pow(CONV,-2)*pow(C,4)/G;
 cgs[RHO] = y[RHO]*pow(CONV,-2)*pow(C,4)/G;
-cgs[MB]  = (y[MB]*CONV*pow(C,2)/G)/MS;
+cgs[MB]  = (y[MB]*CONV*pow(C,2)/G)/SM;
 fprintf(datacgs, "%.8E\t%.8E\t%.8E\t%.8E\t%.8E\t%.8E\n", cgsx,cgs[RHOB],cgs[M],cgs[P],cgs[RHO],cgs[MB]);
 }
