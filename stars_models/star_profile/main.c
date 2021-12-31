@@ -14,7 +14,7 @@ double x, 				//radius variable
 x=xi=0, xf=4;				//Mesh
 num=4000, tpaso=(xf-xi)/num;
 
-rhoc=0.42;
+checkDensity();
 rho=energy(rhoc);
 
 ic(x,y,yaux);				//y0

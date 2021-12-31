@@ -23,6 +23,7 @@ void printSolution(double x,double y[]);
 void printCGS(double x,double y[]);
 
 //Functions related to the ODE system and its physical variables
+void checkDensity();
 void eos(double x, double y[], int i);
 double energy(double rhoc);
 void ic(double x, double y[], double yaux[]);
@@ -36,10 +37,10 @@ void runge4( double x, double y[], double step, double (*f)(double x, double y[]
 void runge2( double x, double y[], double step, double (*f)(double x, double y[], int i));
 void runge3( double x, double y[], double step, double (*f)(double x, double y[], int i) );
 
-/*Mass and energy densities and pressure conversions CGS <-> Geometrized Units
+//Mass and energy densities and pressure conversions CGS <-> Geometrized Units
 double densityConversion (double input, int i);
-double PressureConversion (double input, int i);
-double energyConversion (double input, int i);*/
+double pressureConversion (double input, int i);
+double energyConversion (double input, int i);
 
 //Debug and tests functions/outputs
 FILE *data2;
