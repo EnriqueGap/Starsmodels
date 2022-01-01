@@ -1,15 +1,17 @@
-MYPATH = $(STARS_PATH)
-REGIME = RELATIVISTIC
+MAIN := $(MYPATH)/physics/ec_edo/polytropic.c
 
+ifeq ($(EJECUTION),SPROFILE)
+	MAIN += $(MYPATH)/src/sprofile.c
+endif
+ifeq ($(EJECUTION),FPROFILE)
+	MAIN += $(MYPATH)/src/fprofile.c
+endif
 
-MAIN := $(MYPATH)/star_profile/main.c \
-		$(MYPATH)/ec_edo/polytropic.c
+include $(MYPATH)/src/integration/Makefile
+include $(MYPATH)/src/io/Makefile
+include $(MYPATH)/physics/regime/Makefile
 
-include $(MYPATH)/integration/Makefile
-include $(MYPATH)/io/Makefile
-include $(MYPATH)/regime/Makefile
-
-starprof: $(MAIN) $(MYPATH)/libs/main.h $(MYPATH)/libs/user.h
+starprof: $(MAIN) $(MYPATH)/src/libs/main.h $(MYPATH)/src/libs/user.h
 	@echo ""
 	@echo "⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
 	@echo "⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
@@ -29,8 +31,7 @@ starprof: $(MAIN) $(MYPATH)/libs/main.h $(MYPATH)/libs/user.h
 	@echo ""
 	@echo "Compiling files..."
 	@echo ""
-	@-gcc -I../libs $(MAIN) -o starprof -lm && echo "\033[0;32m=== Compilation SUCCEED ===\033[0m"
+	@-gcc -I../src/libs $(MAIN) -o stars -lm && echo "\033[0;32m=== Compilation SUCCEED ===\033[0m"
+	
 clean:
-	rm starprof
-cleanall:
-	rm starprof profilecgs.dat profile.dat profile.png
+	rm stars

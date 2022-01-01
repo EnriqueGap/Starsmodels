@@ -26,9 +26,10 @@ tpaso=8E-3;
 x=0;
 
 rhoc=rhoi + a*n;
-ci(x,y,yaux);
+rho=energy(rhoc);
+ic(x,y,yaux);
 runge4(x, y, tpaso, f);
-savey(&x,y,yaux,tpaso);
+saveSolution(&x,y,yaux,tpaso);
 
 bisection(&x,y,yaux,tpaso);
 
@@ -42,9 +43,10 @@ tpaso=2E-4;
 x=0;
 
 rhoc=rhom + b*m;
-ci(x,y,yaux);
+rho=energy(rhoc);
+ic(x,y,yaux);
 runge4(x, y, tpaso, f);
-savey(&x,y,yaux,tpaso);
+saveSolution(&x,y,yaux,tpaso);
 
 bisection(&x,y,yaux,tpaso);
 
