@@ -8,7 +8,7 @@ datacgs=fopen("profilecgs.dat", "w");
 fprintf(data, "Radius\tBarionic density\tEnergy\tPressure\tEnergy density\tRest mass\tRadius metric\tTime metric\n");
 fprintf(datacgs, "Radius\tBarionic density\tEnergy\tPressure\tEnergy density\tRest mass\n");
 double x, 				//radius variable
-	y[N], yaux[N], 		//Solution array
+	y[N], yaux[N],	 		//Solution array
 	xi, xf, tpaso, num;		//mesh parameters
 	
 x=xi=0, xf=4;				//Mesh
@@ -26,7 +26,9 @@ for(int i=0; i<num;){
 if(i==0) runge4(x, y, tpaso, f);	//y1=rk(x0,y0)
 else runge4(x, y, tpaso, g);		//y(i+1)=rk(xi,yi) i \neq 0
 
-if(y[P]==y[P]){			//pressure is positive
+//if(y[P]>=0)
+if(*(y+P)==*(y+P))			//pressure is positive
+{
 saveSolution(&x,y,yaux,tpaso);		//xi->x(i+1),  yaux=y(i+1)
 printSolution(x,y);				//x(i+1),y(i+1)
 printCGS(x,y);

@@ -2,7 +2,7 @@
 
 #include "main.h"
 //cgs mass density [g/cm³] to geometrized density [L⁻²] units: [10Km]^-2
-double densityConversion (double input, int i)
+double convertDensity (double input, int i)
 {
 double output;
 
@@ -18,7 +18,7 @@ return output;
 }
 
 //cgs pressure [g/cm*s²] to geometrized pressure [L⁻²] units: [10Km]^-2
-double presssureConversion (double input, int i)
+double convertPresssure (double input, int i)
 {
 double output;
 
@@ -34,7 +34,7 @@ return output;
 }
 
 //cgs energy density [g/cm*s²] to geometrized energy density [L⁻²] units: [10Km]^-2
-double energyConversion (double input, int i)
+double convertEnergy (double input, int i)
 {
 double output;
 

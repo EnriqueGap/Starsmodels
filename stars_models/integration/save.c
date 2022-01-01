@@ -1,6 +1,7 @@
 /* If P is positive then y has valid values and its must to be saved.
 Later in the bisection method this values will be neccesary
 */
+#include"main.h"
 void saveSolution(double *x,double y[],double yaux[],double tpaso)
 {
 double aux=*x+tpaso;

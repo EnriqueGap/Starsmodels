@@ -15,7 +15,7 @@ void eos(double x, double y[], int i)
 // If we know the density and we want the pressure and energy
 if(i==P)
 {
-y[P] 	=k*pow(y[RHOB],gamma);					//P
+y[P] 	=k*pow(y[RHOB],gamma);						//P
 y[RHO]	=y[RHOB] + y[P]/(gamma-1);				//rho
 }
 // If wen know the pressure and we want both densities
