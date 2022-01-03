@@ -17,7 +17,7 @@
 
 FILE *data;				//star output
 FILE *datacgs;				//star output in cgs units
-
+FILE *info;
 //Output and export of data
 void saveSolution(double *x,double y[],double yaux[],double tpaso);
 void printSolution(double x, double y[]);
@@ -57,7 +57,7 @@ double rhoi, rhof, stepDensity, nDensity;
 	
 double k, n, Gamma;
 	
-	
+void exportInfo();	
 	
 	
 	

@@ -1,8 +1,8 @@
 #include"main.h"
 void createFile()
 {
-data=fopen("multiplestars.dat", "w");
-datacgs=fopen("cgsmultiplestars.dat", "w");
+data=fopen("family.dat", "w");
+datacgs=fopen("familycgs.dat", "w");
 
 time_t t = time(NULL);
 struct tm tm = *localtime(&t);

@@ -6,5 +6,5 @@ num=20000, tpaso=(xf-xi)/num;
 
 nDensity=1000, stepDensity=(rhof-rhoi)/nDensity;
 
-k=1, n=1, Gamma= 1 + 1/n;
+k=1, n=1, Gamma= 1.33333333333333333333333333333333333333;
 }

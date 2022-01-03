@@ -7,7 +7,4 @@ int main(){
 createFile();
 checkParameters();
 integration();
-
-fclose(data);
-fclose(datacgs);
 }
