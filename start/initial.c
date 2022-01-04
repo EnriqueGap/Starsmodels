@@ -2,9 +2,9 @@
 void initial()
 {
 xi=0, xf=4;				//Mesh
-num=20000, tpaso=(xf-xi)/num;
+num=40000, tpaso=(xf-xi)/num;
 
-nDensity=1000, stepDensity=(rhof-rhoi)/nDensity;
+nDensity=50000, stepDensity=(rhof-rhoi)/nDensity;
 
-k=1, n=1, Gamma= 1.33333333333333333333333333333333333333;
+k=1, n=1.5, Gamma= 1.6666666666666666666666666667;
 }
