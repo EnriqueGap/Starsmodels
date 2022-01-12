@@ -19,7 +19,7 @@ printSolution(x,y);
 printCGS(x,y);
 //fprintf(data,"%.8E\t%.8E\t%.8E\t%.8E\n", rhoc,x,y[M],y[MB]);
 
-if(a%50==0 && a>0) printf("Integración exitosa de las primeras %d estrellas!!!!\n",a);
+if(a%50==0 && a>0) printf("\rIntegración exitosa de las primeras %d estrellas!!!!",a), fflush(stdout);
 }
 printf("\n");
 }

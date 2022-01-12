@@ -1,5 +1,5 @@
 #include "main.h"
-//We export the correct values with cgs units or geometrical and reescale the time metric function
+//We export the correct values of stelar Mass and Radius for a specific density in cgs units and geometrical
 void printSolution(double x, double y[])
 {
 fprintf(data,"%.8E\t%.8E\t%.8E\t%.8E\n", rhoc,x,y[M],y[MB]);

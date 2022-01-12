@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 from astropy.io import ascii
-
+print("We get de data!!!")
+print(" Now, to see the stars please select between these options:")
 print("1 for metric and profile for a single relativistic star")
 print("2 for metric and profile for a single classical star")
 print("3 for profile for a single star in cgs units")
@@ -25,7 +27,8 @@ if(toplot==1):
 	plt.legend()
 	plt.grid()
 	plt.title('Metric and star profile')
-	plt.savefig('profileandmetric.png')
+	name='profileandmetric.png'
+	plt.savefig(name)
 	
 if(toplot==2):
 	data=ascii.read('profile.dat',header_start=1)
@@ -39,7 +42,8 @@ if(toplot==2):
 	plt.legend()
 	plt.grid()
 	plt.title('Star profile')
-	plt.savefig('profile.png')
+	name='profile.png'
+	plt.savefig(name)
 
 if(toplot==3):
 	data=ascii.read('profilecgs.dat',header_start=1)
@@ -80,7 +84,8 @@ if(toplot==3):
 	plt.title('Barionic density')
 	plt.plot(data['Radius'],data['Barionic density'],label=r'$\rho_{b}$')
 	
-	plt.savefig('profilecgs.png')
+	name='profilecgs.png'
+	plt.savefig(name)
 	
 if(toplot==5):
 	data=ascii.read('family.dat',header_start=1)
@@ -116,33 +121,15 @@ if(toplot==4):
 	plt.title('Rest Mass')	
 	plt.plot(data['Density'],CR,label=r'$m_{b}$')
 
-	plt.subplot(3,1,3)
-	plt.xscale("log")	
+	plt.subplot(3,1,3)	
 	plt.xlabel(r'$r$')
 	plt.ylabel(r'$M$')
 	plt.grid()
 	plt.title('Pressure')
 	plt.plot(data['Radius'],data['Energy'],label=r'$P$')
 	
-	plt.savefig('massradius.png')
+	name='massradius.png'
+	plt.savefig(name)
+	np.savetxt('compactrad.dat', np.c_[data['Density'],CR])
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+os.system('eog '+name)

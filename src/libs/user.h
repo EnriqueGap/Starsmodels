@@ -9,8 +9,16 @@
 
 #define ERR 1E-15			//convergence of bisection method
 #define RES 0.799274894		//reescale factor of metric function time coordinate
+#define N 7				//dimension of array
 //Other parameters related to the integrations methods are local variables
 
 //Physics parameters
-//Parameters related to equations of state are local variables
+//Parameters related to equations of state can be initializated in start/initial.c
 double rhoc, rho;				//central density and energy
+
+double x, 					//radius variable
+	y[N], yaux[N],	 			//Solution array
+	xi, xf, tpaso, num;			//mesh parameters
+
+double rhoi, rhof, stepDensity, nDensity;	//mesh of densities for integration of multiple stars (EJECUTION=FPROFILE)
+double k, n, Gamma;				//EOS=POLYTROPIC
