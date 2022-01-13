@@ -2,6 +2,7 @@
 #include <math.h>
 #include <time.h>
 #include "user.h"			//Physics and user variables library
+#include "eos.h"			//Equation os state library
 
 #define M 0				//energy
 #define P 1				//pressure
@@ -47,6 +48,7 @@ void printCGS(double x, double y[]);
 //Functions related to the ODE system and its physical variables and initial conditions
 //Set the initial conditions
 void checkDensity();
+void checkEOS();
 void initial();
 double energy(double rhoc);
 void ic(double x, double y[], double yaux[]);

@@ -4,7 +4,11 @@ include $(MYPATH)/src/integration/Makefile
 include $(MYPATH)/src/io/Makefile
 include $(MYPATH)/physics/Makefile
 
-starprof: $(MAIN) $(MYPATH)/src/libs/main.h $(MYPATH)/src/libs/user.h
+LIBS = $(MYPATH)/src/libs/main.h \
+		$(MYPATH)/src/libs/user.h \
+			$(MYPATH)/src/libs/eos.h
+
+starprof: $(MAIN) $(LIBS)
 	@echo ""
 	@echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠏⠙⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"

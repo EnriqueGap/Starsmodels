@@ -29,9 +29,10 @@ printf("Barionic central density in cgs units: %.8E\n",aux);
 
 void checkParameters()
 {
-initial();
 x=xi;
 checkDensity();
+checkEOS();
+initial();
 rho=energy(rhoc);
 ic(x,y,yaux);				//y0
 printSolution(x,y);				//x0,y0

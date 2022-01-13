@@ -18,7 +18,7 @@ return output;
 }
 
 //cgs pressure [g/cm*s²] to geometrized pressure [L⁻²] units: [10Km]^-2
-double convertPresssure (double input, int i)
+double convertPressure (double input, int i)
 {
 double output;
 

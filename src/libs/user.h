@@ -21,4 +21,3 @@ double x, 					//radius variable
 	xi, xf, tpaso, num;			//mesh parameters
 
 double rhoi, rhof, stepDensity, nDensity;	//mesh of densities for integration of multiple stars (EJECUTION=FPROFILE)
-double k, n, Gamma;				//EOS=POLYTROPIC

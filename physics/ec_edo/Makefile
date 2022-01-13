@@ -1,6 +1,6 @@
 ifeq ($(EOS),POLYTROPIC)
-	MAIN += $(MYPATH)/physics/ec_edo/polytropic.c
+	MAIN += $(MYPATH)/physics/ec_edo/polytropic/eos.c
 endif
 ifeq ($(EOS),GPPOLYTROPIC)
-	MAIN += $(MYPATH)/physics/ec_edo/gppolytropic.c
+	include $(MYPATH)/physics/ec_edo/gppolytropic/Makefile
 endif

@@ -41,5 +41,6 @@ printf("Barionic central density in cgs units: %.8E\n",aux);
 void checkParameters()
 {
 checkDensity();
+checkEOS();
 initial();
 }
