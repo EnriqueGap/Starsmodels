@@ -4,9 +4,9 @@ import os
 from astropy.io import ascii
 print("We get de data!!!")
 print(" Now, to see the stars please select between these options:")
-print("1 for metric and profile for a single relativistic star")
-print("2 for metric and profile for a single classical star")
-print("3 for profile for a single star in cgs units")
+print("1 to plot metric and profile for a single relativistic star")
+print("2 to plot the profile for a single classical star")
+print("3 to plot the profile for a single star in cgs units")
 print("4 to plot stellar masses and radius in a range of densities")
 print("5 to reproduce the values in Possion et all (classical polytropic star)")
 
@@ -33,8 +33,8 @@ if(toplot==1):
 if(toplot==2):
 	data=ascii.read('profile.dat',header_start=1)
 	plt.figure(figsize=(12,9))
-	plt.plot(data['Radius'],data['Energy'],label=r'$m$')
-	plt.plot(data['Radius'],data['Rest mass'],label=r'$m_{b}$')
+	#plt.plot(data['Radius'],data['Energy'],label=r'$m$')
+	#plt.plot(data['Radius'],data['Rest mass'],label=r'$m_{b}$')
 	plt.plot(data['Radius'],data['Pressure'],label=r'$P$')
 	plt.plot(data['Radius'],data['Energy density'],label=r'$\epsilon$')
 	plt.plot(data['Radius'],data['Barionic density'],label=r'$\rho_{b}$')

@@ -20,6 +20,7 @@ typedef struct{
 	double lambda[3];
 	double a[3];
 	double rho0;
+	double pre0;
 }core;
 
 core apr, bhf, fps, h4, kde0v, *coreparam,		//EOS=GPPOLYTROPIC

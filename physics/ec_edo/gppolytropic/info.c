@@ -1,7 +1,7 @@
 #include "main.h"
 static void makeCrust();
 static void makeNuclear();
-static void makeNuclearwCrust();
+static void makeNwC();
 static void completeCore(core *eos);
 static void plot(core eos);
 
@@ -10,20 +10,19 @@ void checkEOS()
     printf("You selected the Generalized Piecewise Polytropic Equation as EOS.\n");
     printf("Please choose:\n");
     do{
-        printf("Use only nuclear EOS enter 1.\n");
-        printf("Use only crust EOS enter 2.\n");
-        printf("Use nuclear and crust EOS enter 3.\n");
+        printf("To use only nuclear EOS enter 1.\n");
+        printf("To use only crust EOS enter 2.\n");
+        printf("To use nuclear and crust EOS enter 3.\n");
         scanf("%d",&gpp);
     }while(gpp!=1 && gpp!=2 && gpp!=3);
 
-    if(gpp==1) makeNuclear();
-    else if(gpp==2) makeCrust();
-    else if(gpp==3) makeNuclearwCrust();
+    if(gpp==NUCLEAR) makeNuclear();
+    else if(gpp==CRUST) makeCrust();
+    else if(gpp==NC) makeCrust(), makeNwC();
 }
 
 static void makeNuclear()
 {
-
     apr.gamma[2]=3.310, apr.gamma[1]=3.452, apr.gamma[0]=3.169;
     apr.k[0]=pow(10,-33.210);
     completeCore(&apr);
@@ -49,20 +48,24 @@ static void makeNuclear()
 
 static void completeCore(core *eos)
 {
-    eos->rho0=0;
-    eos->rho[2]=convertDensity(rhoc,CGS), eos->rho[1]=pow(10,14.99), eos->rho[0]=pow(10,14.87);
-    eos->a[0]=-1;
-    eos->lambda[0]=0;
-
-    for (int i=0; i<2; i++){
-        eos->k[i+1]		=eos->k[i]*(eos->gamma[i]/eos->gamma[i+1])*pow(eos->rho[i],eos->gamma[i]-eos->gamma[i+1]);
-
-        eos->lambda[i+1]	=eos->lambda[i] + (1 - (eos->gamma[i]/eos->gamma[i+1]))*eos->k[i]*pow(eos->rho[i],eos->gamma[i]);
-
-        eos->a[i+1]		=eos->a[i] + eos->gamma[i]*eos->k[i]*pow(eos->rho[i],eos->gamma[i]-1)*(eos->gamma[i+1] - eos->gamma[i])/( (eos->gamma[i+1]-1)*(eos->gamma[i]-1) );
+    eos->rho[1]=pow(10,14.99), eos->rho[0]=pow(10,14.87);
+    if(gpp==NUCLEAR){
+        eos->rho0=0;
+        eos->a[0]=0;
+        eos->lambda[0]=0;
     }
-
-    for (int i=0; i<3; i++) eos->pre[i]=eos->k[i]*pow(eos->rho[i],eos->gamma[i]) + eos->lambda[i];
+    else if(gpp==NC){
+        eos->lambda[0]=sly4crust.k[4]*pow(eos->rho0,sly4crust.gamma[4])+sly4crust.lambda[4]-eos->k[0]*pow(eos->rho0,eos->gamma[0]);
+        double aux=sly4crust.k[4]*pow(eos->rho0,sly4crust.gamma[4])/(sly4crust.gamma[4]-1) + (1+sly4crust.a[4])*eos->rho0 - sly4crust.lambda[4];
+        eos->a[0]=aux/eos->rho0 - eos->k[0]*pow(eos->rho0,eos->gamma[0]-1)/(eos->gamma[0]-1) + eos->lambda[0]/eos->rho0 -1;
+    }
+    for (int i=0; i<2; i++){
+        eos->k[i+1]=eos->k[i]*(eos->gamma[i]/eos->gamma[i+1])*pow(eos->rho[i],eos->gamma[i]-eos->gamma[i+1]);
+        eos->lambda[i+1]=eos->lambda[i] + (1 - (eos->gamma[i]/eos->gamma[i+1]))*eos->k[i]*pow(eos->rho[i],eos->gamma[i]);
+        eos->a[i+1]=eos->a[i] + eos->gamma[i]*eos->k[i]*pow(eos->rho[i],eos->gamma[i]-1)*(eos->gamma[i+1] - eos->gamma[i])/( (eos->gamma[i+1]-1)*(eos->gamma[i]-1) );
+    }
+    for (int i=0; i<2; i++) eos->pre[i]=eos->k[i]*pow(eos->rho[i],eos->gamma[i]) + eos->lambda[i];
+    eos->pre0=eos->k[0]*pow(eos->rho0,eos->gamma[0]) + eos->lambda[0];
 }
 
 static void makeCrust()
@@ -81,18 +84,33 @@ static void makeCrust()
 
 }
 
-static void makeNuclearwCrust()
+static void makeNwC()
 {
 
-apr.rho0=2.676E14;
+    apr.gamma[2]=3.310, apr.gamma[1]=3.452, apr.gamma[0]=3.169;
+    apr.k[0]=pow(10,-33.210);
+    apr.rho0=2.676E14;
+    completeCore(&apr);
 
-bhf.rho0=1.912E14;
+    bhf.gamma[2]=2.618, bhf.gamma[1]=2.774, bhf.gamma[0]=3.284;
+    bhf.k[0]=pow(10,-35.016);
+    bhf.rho0=1.912E14;
+    completeCore(&bhf);
 
-fps.rho0=2.491E14;
+    fps.gamma[2]=2.199, fps.gamma[1]=2.652, fps.gamma[0]=3.147;
+    fps.k[0]=pow(10,-32.985);
+    fps.rho0=2.491E14;
+    completeCore(&fps);
 
-h4.rho0=3.547E14;
+    h4.gamma[2]=1.562, h4.gamma[1]=2.333, h4.gamma[0]=2.514;
+    h4.k[0]=pow(10,-23.310);
+    h4.rho0=3.547E14;
+    completeCore(&h4);
 
-kde0v.rho0=2.730E14;
+    kde0v.gamma[2]=2.803, kde0v.gamma[1]=2.835, kde0v.gamma[0]=2.967;
+    kde0v.k[0]=pow(10,-30.250);
+    kde0v.rho0=2.730E14;
+    completeCore(&kde0v);
 
 kde0v1.rho0=2.709E14;
 
