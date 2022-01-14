@@ -1,13 +1,13 @@
 #include"main.h"
 void initial()
 {
-xi=0, xf=3;				//Mesh
-num=40000, tpaso=(xf-xi)/num;
+    xi=0, xf=3;				//Mesh
+    num=40000, tpaso=(xf-xi)/num;
 
-nDensity=1000, stepDensity=(rhof-rhoi)/nDensity;
+    nDensity=1000, stepDensity=(rhof-rhoi)/nDensity;
 
-k=1, n=1, Gamma= 1 + 1/n;
+    k=1, n=1, Gamma= 1 + 1/n;
 
-coreparam=&apr;
-crustparam=&sly4crust;
+    coreparam=&bhf;
+    crustparam=&sly4crust;
 }
