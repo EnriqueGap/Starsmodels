@@ -1,0 +1,15 @@
+#Jupyter Notebooks
+
+.ipynb_checkpoints
+
+#Output data
+
+.dat
+
+#Objetive files
+
+.o
+
+#Plots
+
+.png
