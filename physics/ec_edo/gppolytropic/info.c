@@ -1,27 +1,18 @@
 #include "main.h"
 static void makeCrust();
-static void makeNuclear();
+static void makeCore();
 static void makeNwC();
 static void completeCore(core *eos);
 static void plot(core eos);
 
 void checkEOS()
 {
-    printf("You selected the Generalized Piecewise Polytropic Equation as EOS.\n");
-    printf("Please choose:\n");
-    do{
-        printf("To use only nuclear EOS enter 1.\n");
-        printf("To use only crust EOS enter 2.\n");
-        printf("To use nuclear and crust EOS enter 3.\n");
-        scanf("%d",&gpp);
-    }while(gpp!=1 && gpp!=2 && gpp!=3);
-
-    if(gpp==NUCLEAR) makeNuclear();
+    if(gpp==CORE) makeCore();
     else if(gpp==CRUST) makeCrust();
     else if(gpp==NC) makeCrust(), makeNwC();
 }
 
-static void makeNuclear()
+static void makeCore()
 {
     apr.gamma[2]=3.310, apr.gamma[1]=3.452, apr.gamma[0]=3.169;
     apr.k[0]=pow(10,-33.210);
@@ -49,7 +40,7 @@ static void makeNuclear()
 static void completeCore(core *eos)
 {
     eos->rho[1]=pow(10,14.99), eos->rho[0]=pow(10,14.87);
-    if(gpp==NUCLEAR){
+    if(gpp==CORE){
         eos->rho0=0;
         eos->a[0]=0;
         eos->lambda[0]=0;

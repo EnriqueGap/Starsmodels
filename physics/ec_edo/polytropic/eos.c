@@ -27,5 +27,4 @@ void eos(double x, double y[], int i)
 
 void checkEOS()
 {
-    return 0;
 }

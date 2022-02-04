@@ -26,7 +26,7 @@ double energy(double rhoc)
             auxrho = crustparam->k[0]*pow(auxrhob,crustparam->gamma[0])/(crustparam->gamma[0]-1) + (1+crustparam->a[0])*auxrhob - crustparam->lambda[0];
         }
     }
-    else if(gpp==NUCLEAR){
+    else if(gpp==CORE){
         if(auxrhob>=coreparam->rho[1]){
             auxrho = coreparam->k[2]*pow(auxrhob,coreparam->gamma[2])/(coreparam->gamma[2]-1) + (1+coreparam->a[2])*auxrhob - coreparam->lambda[2];
         }
@@ -99,7 +99,7 @@ void eos(double x, double y[], int i)
                 auxpre = crustparam->k[0]*pow(auxrhob,crustparam->gamma[0]) + crustparam->lambda[0];
             }
         }
-        else if(gpp==NUCLEAR){
+        else if(gpp==CORE){
             if(auxrhob>=coreparam->rho[1]){
                 auxrho = coreparam->k[2]*pow(auxrhob,coreparam->gamma[2])/(coreparam->gamma[2]-1) + (1+coreparam->a[2])*auxrhob - coreparam->lambda[2];
                 auxpre = coreparam->k[2]*pow(auxrhob,coreparam->gamma[2]) + coreparam->lambda[2];
@@ -185,7 +185,7 @@ void eos(double x, double y[], int i)
             }
         }
 
-        else if(gpp==NUCLEAR){
+        else if(gpp==CORE){
             if(auxpre>=coreparam->pre[1]){
                 auxrhob = pow((auxpre-coreparam->lambda[2])/coreparam->k[2],1/coreparam->gamma[2]);
                 auxrho = coreparam->k[2]*pow(auxrhob,coreparam->gamma[2])/(coreparam->gamma[2]-1) + (1+coreparam->a[2])*auxrhob - coreparam->lambda[2];

@@ -1,4 +1,4 @@
-#define NUCLEAR 1
+#define CORE 1
 #define CRUST 2
 #define NC 3
 typedef struct{

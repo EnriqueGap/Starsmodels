@@ -49,7 +49,7 @@ void printCGS(double x, double y[]);
 //Set the initial conditions
 void checkDensity();
 void checkEOS();
-void initial();
+void userParameters();
 double energy(double rhoc);
 void ic(double x, double y[], double yaux[]);
 //Related equation of state
