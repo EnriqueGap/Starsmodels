@@ -1,3 +1,3 @@
-include $(MYPATH)/src/io/input/Makefile
+MAIN+=$(MYPATH)/start/user.c
 include $(MYPATH)/src/io/files/Makefile
 include $(MYPATH)/src/io/output/Makefile

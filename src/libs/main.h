@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#include "user.h"			//Physics and user variables library
-#include "eos.h"			//Equation os state library
+#include "physics.h"			//Physics and user variables library
+#include "eos.h"			    //Equation os state library
+#include "model.h"
 
 #define M 0				//energy
 #define P 1				//pressure
@@ -15,13 +16,16 @@
 #define GEO 1				//Geometrized units [L]=10km
 #define CGS 2				//CGS units
 
+#define TRUE 1
+#define FALSE 0
+
 FILE *data;				//star output
 FILE *datacgs;				//star output in cgs units
 
 /*=======================================================================
 ==========================Main functions===============================
 =======================================================================*/
-
+void checkModel();
 /*Creates de .dat files with specific headers, in this files all the info about the star will be saved
 Includes date and time of the simulation*/
 void createFile();
@@ -67,6 +71,9 @@ void rk( double x, double y[], double step, double (*f)(double x, double y[], in
 double convertDensity (double input, int i);
 double convertPressure (double input, int i);
 double convertEnergy (double input, int i);
+double convertDistance (double input, int i);
+double convertMass (double input, int i);
+double convertMassEnergy (double input, int i);
 
 //Debug and tests functions/outputs
 FILE *info;

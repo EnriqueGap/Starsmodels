@@ -5,24 +5,24 @@ main.h library. These functions helps us to perform that. */
 #include"main.h"
 void bisection(double *x,double y[],double yaux[],double tpaso)
 {
-//Recieve the mesh values, the solution array and an auxiliary array
-double r, r0, raux, tp;
-r=*x;
-tp=tpaso;
-while (ERR<y[P]){
-//Start the integrartion until the pressure is less or equal to our tolerance (ERR)
-rk(r, y, tp, g);
-//If the pressure is still positive keep the values
-if (y[P]==y[P]){
-saveSolution(&r,y,yaux,tp);
-}
-/*If the pressure is negative back in the mesh and recover the last values of the
-array where the pressure was positive (y=yaux)*/
-else{					
-tp=tp*0.5;				
-for (int m=0; m<N; m++) y[m]=yaux[m];
-}
-}
-//At the end, set the position on the mesh on the star boundary calculated
-*x=r;
+    //Recieve the mesh values, the solution array and an auxiliary array
+    double r, r0, raux, tp;
+    r=*x;
+    tp=tpaso;
+    while (ERR<y[P]){
+        //Start the integrartion until the pressure is less or equal to our tolerance (ERR)
+        rk(r, y, tp, g);
+        //If the pressure is still positive keep the values
+        if (y[P]==y[P]){
+            saveSolution(&r,y,yaux,tp);
+        }
+        /*If the pressure is negative back in the mesh and recover the last values of the
+        array where the pressure was positive (y=yaux)*/
+        else{					
+            tp=tp*0.5;				
+            for (int m=0; m<N; m++) y[m]=yaux[m];
+        }
+    }
+    //At the end, set the position on the mesh on the star boundary calculated
+    *x=r;
 }

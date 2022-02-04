@@ -1,7 +1,4 @@
-- Merge .py scripts					DONE
 - Check outputs with Nambo, Guzman & Ortiz		DONE Ortyz and Guzman
-- Check rk methods					DONE
-- Add generalized piecewise polytropic EOS		DONE
 - Check outputs with Boyle et al			
 - Check no output in FPROFILE w/GPP
 - Improvements in integration() function

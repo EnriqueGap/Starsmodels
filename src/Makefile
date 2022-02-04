@@ -2,11 +2,13 @@ MAIN := $(MYPATH)/src/main.c \
 
 include $(MYPATH)/src/integration/Makefile
 include $(MYPATH)/src/io/Makefile
+include $(MYPATH)/src/model/Makefile
 include $(MYPATH)/physics/Makefile
 
 LIBS = $(MYPATH)/src/libs/main.h \
-		$(MYPATH)/src/libs/user.h \
-			$(MYPATH)/src/libs/eos.h
+			$(MYPATH)/src/libs/physics.h \
+				$(MYPATH)/src/libs/eos.h \
+					$(MYPATH)/src/libs/model.h
 
 starprof: $(MAIN) $(LIBS)
 	@echo ""
@@ -28,7 +30,7 @@ starprof: $(MAIN) $(LIBS)
 	@echo ""
 	@echo "Compiling files..."
 	@echo ""
-	@-gcc -I../src/libs $(MAIN) -o stars -lm && echo "\033[0;32m=== Compilation SUCCEED ===\033[0m"
+	@-gcc -I../src/libs $(MAIN) -o stars -lm && echo "\033[0;32m=== Compilation SUCCEED ===\033[0m"|| echo "\033[1;31m=== Compilation FAILED ===\033[0m";
 	@echo ""
 	@echo "###########################################################"
 	@echo "################### Makefile parameters ###################"

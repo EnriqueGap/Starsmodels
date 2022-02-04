@@ -7,13 +7,13 @@
 #define KM 1E5				//Kilometer cm
 #define CONV 1E6			//Conversion 10km=1x10⁶cm
 
-#define ERR 1E-15			//convergence of bisection method
+#define ERR 1E-10			//convergence of bisection method
 #define RES 0.799274894		//reescale factor of metric function time coordinate
 #define N 7				//dimension of array
 //Other parameters related to the integrations methods are local variables
 
 //Physics parameters
-//Parameters related to equations of state can be initializated in start/initial.c
+//Parameters related to equations of state can be initializated in start/user.c
 double rhoc, rho;				//central density and energy
 
 double x, 					//radius variable

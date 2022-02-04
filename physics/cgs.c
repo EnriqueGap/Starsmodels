@@ -33,3 +33,36 @@ double convertEnergy (double input, int i){
     }
     return output;
 }
+
+double convertDistance (double input, int i){
+    double output;
+    if (i==GEO){
+        output=input/CONV;
+    }
+    if (i==CGS){
+        output=input*CONV;
+    }
+    return output;
+}
+
+double convertMass (double input, int i){
+    double output;
+    if (i==GEO){
+        output=input*G/(C*C*CONV);
+    }
+    if (i==CGS){
+        output=input*CONV*C*C/G;
+    }
+    return output;
+}
+
+double convertMassEnergy (double input, int i){
+    double output;
+    if (i==GEO){
+        output=input*G/(C*C*C*C*CONV);
+    }
+    if (i==CGS){
+        output=input*CONV*C*C*C*C/G;
+    }
+    return output;
+}
